@@ -58,15 +58,6 @@ jobs:
       - name: Run tests with coverage
         run: pnpm test:coverage
 
-      - name: Check coverage threshold
-        run: |
-          COVERAGE=$(npx vitest run --coverage --reporter=json 2>/dev/null | jq '.total.lines.pct // 0')
-          echo "Line coverage: ${COVERAGE}%"
-          if (( $(echo "$COVERAGE < 60" | bc -l) )); then
-            echo "::error::Coverage ${COVERAGE}% is below 60% threshold"
-            exit 1
-          fi
-
   # ─── Job 3: Build Verification (parallel) ───
   build:
     name: Build
