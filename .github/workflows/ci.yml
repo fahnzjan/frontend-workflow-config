@@ -83,10 +83,10 @@ jobs:
       - name: Check bundle size
         run: npx size-limit
 
-  # ─── Job 4: E2E (only on merge to main) ───
+  # ─── Job 4: E2E (only on merge to master) ───
   e2e:
     name: E2E tests
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs: [lint, test, build]
     runs-on: ubuntu-latest
     steps:
