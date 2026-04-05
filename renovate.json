@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["every weekend"],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "description": "Auto-merge patch updates",
+      "matchUpdateTypes": ["patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    },
+    {
+      "description": "Group minor updates into weekly PR",
+      "matchUpdateTypes": ["minor"],
+      "groupName": "minor dependencies",
+      "schedule": ["every weekend"]
+    },
+    {
+      "description": "Major updates need individual review",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "description": "Group all lint-related packages",
+      "matchPackageNames": ["eslint", "prettier", "stylelint"],
+      "matchPackagePrefixes": ["eslint-", "@eslint/", "prettier-", "@typescript-eslint/"],
+      "groupName": "lint tooling"
+    },
+    {
+      "description": "Group all test-related packages",
+      "matchPackageNames": ["vitest", "@playwright/test"],
+      "matchPackagePrefixes": ["@vitest/", "@testing-library/"],
+      "groupName": "test tooling"
+    }
+  ]
+}
