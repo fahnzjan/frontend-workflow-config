@@ -37,4 +37,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  html: {
+    title: 'my react app',
+  },
 });
